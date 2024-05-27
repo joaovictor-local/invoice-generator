@@ -31,6 +31,8 @@ export const DownloadInvoiceButton = () => {
     }
   }, [status]);
 
+  const fileName = invoiceTerms.invoiceNumber.length ? `invoice_${invoiceTerms.invoiceNumber}.pdf` : 'invoice.pdf'
+
   return (
     <div className="flex h-[calc(100vh-208px)] justify-center items-center">
       <div>
@@ -76,7 +78,7 @@ export const DownloadInvoiceButton = () => {
                     </Page>
                   </Document>
                 ).toBlob();
-                saveAs(blob, "invoice.pdf");
+                saveAs(blob, fileName);
                 setStatus("downloaded");
               } else {
                 setStatus("not-downloaded");
